@@ -1,0 +1,10 @@
+#vertical-center {
+    width: 5%;
+  }
+  body {
+    background:#301934;
+  }
+  .box{
+    background-color: black;
+    border: gray 1px solid;
+}

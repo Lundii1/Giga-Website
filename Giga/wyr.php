@@ -20,7 +20,7 @@ include("header.php")
         </div>
         <div class ="row">
         <div class="col m-5">
-        <!-- yeah i know that the a href comes after the h2 and not before but there's a weird bug going on and i'm lazy to fix it xqcL --->
+        <!-- yeah i know that the a href comes after the h2 and not before but there's a weird bug going on and i'm lazy too fix it xqcL --->
         <a class="wyr" href="">
             <h2 class="WYRImage"> 
             <?php
@@ -31,8 +31,8 @@ include("header.php")
             </h2>
         </a>
         </div>
-        <div class="col m-1">
-        <h4>
+        <div class="col m-1 d-flex justify-content-center text-center">
+        <h4 class="mx-auto">
          Or
         </h4>
         </div>

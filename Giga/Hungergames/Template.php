@@ -15,12 +15,6 @@
 include("header.php");
 include(dirname(__DIR__)."./Player.php");
 include(dirname(__DIR__)."./ListeActions.php");
-
-#$myfile = "Day.php";
-
-#$stringData = "Tracy Tanner\n";
-#fwrite($fh, $stringData);
-#fclose($fh);
 ?>
 <main>
      <div class="col box m-5">

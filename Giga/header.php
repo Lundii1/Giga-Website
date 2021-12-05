@@ -2,13 +2,13 @@
         <div class="col-auto">
             <a href="index.php" class="row align-items-center">
                 <img src="images/Logo.jpg" class="container-fluid logo">
-                <h1 class="col titre">Giga 3</h1>
+                <h1 class="col titre">Giga</h1>
             </a>
         </div>
         <nav class="col text-end">
             <div class="dropdown ">
-                <button class="btn btn-light">
-                    <a href="">Succursales</a>
+                <button class="btn btn-light"> 
+                    <a href="test.php">Fun</a>
                 </button>
                 <button class="btn btn-light">
                     <a href="Music.php">Music</a>

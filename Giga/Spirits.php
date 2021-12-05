@@ -185,7 +185,7 @@ $FatSpirit->setModifiers(900,-2,0,0,0,-0.5);
 ######################
 ######################
 $EraliumSpirit = new Spirit();
-$EraliumSpirit->setName("EraliumSpirit");
+$EraliumSpirit->setName("Eralium Spirit");
 $EraliumSpirit->setDescription("A spirit made of Eralium");
 $EraliumSpirit->setModifiers(75,-4,0,0.10,0.25,-0.05); 
 ######################
@@ -221,7 +221,7 @@ $FastSpirit->setModifiers(0,0,0,0,0, 0.25);
 ######################
 ######################
 $LostSpirit = new Spirit();
-$LostSpirit->setName("LostSpirit");
+$LostSpirit->setName("Lost Spirit");
 $LostSpirit->setDescription("A spirit that is lost");
 $LostSpirit->setModifiers(-10,-2,0,0,0,- 0.5);
 ######################

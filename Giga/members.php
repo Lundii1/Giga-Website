@@ -14,7 +14,7 @@
 include("header.php")
 ?>
     <main class="row">
-        <div class="col box m-5">
+        <div class="col box2 m-5">
             <h2>Based people: </h2>
         <?php 
         include("MembersClass.php");

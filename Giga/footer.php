@@ -1,1 +1,1 @@
-<h2 class ="box paragraph">Made by lundii :) </h2>
+<h2 class ="box2 paragraph">Made by lundii :) </h2>

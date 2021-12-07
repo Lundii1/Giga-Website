@@ -25,17 +25,16 @@ fwrite($createfile, file_get_contents("template.php"));
 fclose($createfile);
 $html = file_get_contents("template.php");
 file_put_contents($myfile, $html);
-session_start();
 ?>
 <main>
      <div class="col box m-5">
      <h2><?php echo "Day ".$z[0];?></h2>
        <div class="row">
-         <?php foreach($listeplayers as $value):?>
+         <?php foreach($listeplayers as $value): ?>
           <div class="row">
          <div class="col-lg-12">
          <img src=../<?php echo $value->getPhoto(); ?> class="image">
-         <p class="paragraph"><?php $string = $_COOKIE[str_replace(' ','',$value->getName())] ;echo $value->getName();echo "&nbsp"; echo $string;?></p>
+         <p class="paragraph"><?php echo $value->getName();echo "&nbsp"; echo $value->getSpirit();?></p>
          </div>
          </div>
          <hr class="dashed" style="width:99.5%"> </hr>

@@ -1,4 +1,27 @@
 <?php
+// connect to database
+$connect = mysqli_connect("localhost","amine","admin","giga");
+
+// check connection
+if(!$connect) {
+    echo 'Connection error '. mysqli_connect_error();
+}
+// sql to create table
+$sql = "CREATE TABLE IF NOT EXISTS Spirits (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(30) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    hpmod INT, armormod INT, attackdmgmod INT, critchancemod INT, critdamagemod INT, evasionmod INT
+    )";
+    
+    if ($connect->query($sql) === TRUE) {
+      
+    } else {
+      echo "Error creating table: " . $connect->error;
+    }
+    
+$connect->close();
+
 class Spirit{
 
 public $name;

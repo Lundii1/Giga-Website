@@ -1,5 +1,28 @@
 <?php
 include("Spirits.php");
+// connect to database
+$connect = mysqli_connect("localhost","amine","admin","giga");
+
+// check connection
+if(!$connect) {
+    echo 'Connection error '. mysqli_connect_error();
+}
+// sql to create table
+$sql = "CREATE TABLE IF NOT EXISTS Players (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(30) NOT NULL,
+    photo VARCHAR(45) NOT NULL,
+    hp INT NOT NULL, armor INT NOT NULL, attackdmg INT NOT NULL, critchance DECIMAL(19 , 2) NOT NULL, critdamage DECIMAL(19 ,2 ) NOT NULL, evasion DECIMAL(19 ,2) NOT NULL
+    )";
+    
+    if ($connect->query($sql) === TRUE) {
+      
+    } else {
+      echo "Error creating table: " . $connect->error;
+    }
+
+
+
 include("ListeActions.php");
 class Player{
 
@@ -38,6 +61,21 @@ function getHP() {
 function getPhoto() {
    return $this->photo;
 }
+function getArmor() {
+    return $this->armor;
+}
+function getAttackDMG() {
+    return $this->attackdmg;
+}
+function getCritChance() {
+    return $this->critchance;
+}
+function getCritDamage() {
+    return $this->critdamage;
+}
+function getEvasion() {
+    return $this->evasion;
+}
 function setSpirit($spirit) {
     $this->spirit = $spirit;
 }
@@ -53,6 +91,12 @@ function SpiritLink(Spirit $spirit) {
      $this->critchance += $spirit->critchancemod;
      $this->critdamage += $spirit->critdmgmod;
      $this->evasion += $spirit->evasionmod;
+     if ($this -> evasion < 0) {
+         $this->evasion = 0;
+     }
+     if ($this->critchance < 0) {
+         $this->critchance = 0;
+     }
 }
 function getSpirit() {
     return $this->spirit->name;
@@ -140,4 +184,21 @@ function randomizeMember() {
         }
     }
    }
+   // prepare and bind
+//    $stmt = $connect->prepare("INSERT INTO Players (name, photo, hp, armor, attackdmg, critchance, critdamage, evasion) VALUES (?,?,?,?,?,?,?,?)");
+//    $stmt->bind_param("ssiiiddd", $Pname, $Pphoto,$Php,$Parmor,$Pattackdmg,$Pcritchance,$Pcritdmg,$Pevasion);
+//    foreach($listeplayers as $value) {
+//        $Pname = $value->getName();
+//        $Pphoto = $value->getPhoto();
+//        $Php = $value->getHP();
+//        $Parmor = $value->getArmor();
+//        $Pattackdmg = $value->getAttackDMG();
+//        $Pcritchance = $value->getCritChance();
+//        $Pcritdmg = $value->getCritDamage();
+//        $Pevasion = $value->getEvasion();
+//        $sql = mysqli_query($connect,"INSERT INTO Players (name, photo, hp, armor, attackdmg, critchance, critdamage, evasion) VALUES ($Pname,$Pphoto,$Php,$Parmor,$Pattackdmg,$Pcritchance,$Pcritdmg,$Pevasion)");
+//    $stmt->execute();
+//    }
+//    $stmt->close();
+//    $connect->close();
 ?>

@@ -1,3 +1,21 @@
+<?php
+// connect to database
+$connect = mysqli_connect("localhost","amine","admin","giga");
+
+// check connection
+if(!$connect) {
+    echo 'Connection error '. mysqli_connect_error();
+}
+//sql to delete hungergames tables
+$sql = "DROP TABLE players";
+$sql1 = "DROP TABLE spirits";
+if ($connect->query($sql) === FALSE) {
+
+}
+if ($connect->query($sql1) === FALSE) {
+
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

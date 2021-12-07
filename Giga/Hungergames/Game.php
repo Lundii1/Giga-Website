@@ -15,30 +15,49 @@
 include("header.php");
 include(dirname(__DIR__)."./Player.php");
 include(dirname(__DIR__)."./ListeActions.php");
-
-#$myfile = "Day.php";
-
-#$stringData = "Tracy Tanner\n";
-#fwrite($fh, $stringData);
-#fclose($fh);
+$x = 1;
+$myfile = "Day-".$x.".php";
+$createfile = fopen($myfile,"w") or die ("Oops");
+fwrite($createfile, file_get_contents("template.php"));
+fclose($createfile);
+$html = file_get_contents("template.php");
+file_put_contents($myfile, $html);
 ?>
 <main>
      <div class="col box m-5">
      <h2>Battle Royale</h2>
        <div class="row">
-         <?php foreach($listeplayers as $value): ?>
+         <?php 
+          $connect = mysqli_connect("localhost","amine","admin","giga");
+          $stmt = $connect->prepare("INSERT INTO Players (name, photo, hp, armor, attackdmg, critchance, critdamage, evasion) VALUES (?,?,?,?,?,?,?,?)");
+          $stmt->bind_param("ssiiiddd", $Pname, $Pphoto,$Php,$Parmor,$Pattackdmg,$Pcritchance,$Pcritdmg,$Pevasion);
+         foreach($listeplayers as $value): ?>
          <div class="col-lg-3">
              <?php
              $esprit = array_rand($listespirits);
              $value->setSpirit($listespirits[$esprit]);
-             $value->SpiritLink($listespirits[$esprit]); ?>
+             $value->SpiritLink($listespirits[$esprit]); 
+             setcookie(str_replace(' ','',$value->getName()),$value->getSpirit());
+             $Pname = $value->getName();
+             $Pphoto = $value->getPhoto();
+             $Php = $value->getHP();
+             $Parmor = $value->getArmor();
+             $Pattackdmg = $value->getAttackDMG();
+             $Pcritchance = $value->getCritChance();
+             $Pcritdmg = $value->getCritDamage();
+             $Pevasion = $value->getEvasion();
+             $sql = mysqli_query($connect,"INSERT INTO Players (name, photo, hp, armor, attackdmg, critchance, critdamage, evasion) VALUES ($Pname,$Pphoto,$Php,$Parmor,$Pattackdmg,$Pcritchance,$Pcritdmg,$Pevasion)");
+             $stmt->execute();
+             ?>
          <img src=../<?php echo $value->getPhoto(); ?> class="image">
          <p class="paragraph"><?php echo $value->getName();echo "&nbsp"; echo $value->getSpirit();?></p>
          </div>
-         <?php endforeach; ?>
+         <?php endforeach;
+         $stmt->close();
+         $connect->close();?>
        </div>
        <div class="row d-flex justify-content-center">
-       <button class="btn" id="vertical-center"><a href="">Next day</a></button>
+       <button class="btn" id="vertical-center"><a href=<?php echo $myfile ?>>Next day</a></button>
        </div>
        </div>
      </div>

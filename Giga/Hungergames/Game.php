@@ -38,6 +38,8 @@ file_put_contents($myfile, $html);
              $value->setSpirit($listespirits[$esprit]);
              $value->SpiritLink($listespirits[$esprit]); 
              setcookie(str_replace(' ','',$value->getName()),$value->getSpirit());
+             setcookie("HP".str_replace(' ','',$value->getName()),$value->getHP());
+             setcookie("MAXHP".str_replace(' ','',$value->getName()),$value->getHP());  
              $Pname = $value->getName();
              $Pphoto = $value->getPhoto();
              $Php = $value->getHP();

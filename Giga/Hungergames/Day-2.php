@@ -78,7 +78,8 @@ session_start();
          <div class="col-lg-12">
          <img src=../<?php echo $value->getPhoto(); ?> class="image">
          <p class="paragraph"><?php $string = $_COOKIE[str_replace(' ','',$value->getName())] ;echo $value->getName();echo "&nbsp"; echo $string;?></p>
-         <progress id="health" value=<?php echo "63" ?> max=<?php echo $value->getHP(); ?>></progress>
+         <progress id="health" value=<?php $value->setHP($_COOKIE["HP".str_replace(' ','',$value->getName())]); echo $value->getHP(); ?>
+          max=<?php echo $_COOKIE["MAXHP".str_replace(' ','',$value->getName())]; ?>></progress>
          </div>
          </div>
          <hr class="dashed" style="width:99.5%"> </hr>

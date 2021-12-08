@@ -79,6 +79,9 @@ function getEvasion() {
 function setSpirit($spirit) {
     $this->spirit = $spirit;
 }
+function setHP($hp) {
+    $this->hp = $hp;
+}
 function doAction() {
     global $listeactions;
     $resultat = array_rand($listeactions);

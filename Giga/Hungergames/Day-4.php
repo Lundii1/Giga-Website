@@ -19,22 +19,32 @@ $y = explode('-',__FILE__);
 $stringy = $y[1];
 $z = explode('.',$stringy);
 $x = (intval($z[0]) + 1)."";
+if (!empty($_SERVER['REMOTE_ADDR']) && $x == 1) {
+  // If a "remote" address is set, we know that this is not a CLI call
+  header('HTTP/1.1 403 Forbidden');
+  echo '<button class="btn btn-light">
+  <a href="../Index.php">Access denied. Go away, shoo!</a>
+</button>';
+  die();
+} 
 $myfile = "Day-".$x.".php";
 $createfile = fopen($myfile,"w") or die ("Oops");
 fwrite($createfile, file_get_contents("template.php"));
 fclose($createfile);
 $html = file_get_contents("template.php");
 file_put_contents($myfile, $html);
+session_start();
 ?>
 <main>
      <div class="col box m-5">
      <h2><?php echo "Day ".$z[0];?></h2>
        <div class="row">
-         <?php foreach($listeplayers as $value): ?>
+         <?php foreach($listeplayers as $value):?>
           <div class="row">
          <div class="col-lg-12">
          <img src=../<?php echo $value->getPhoto(); ?> class="image">
-         <p class="paragraph"><?php echo $value->getName();echo "&nbsp"; echo $value->getSpirit();?></p>
+         <p class="paragraph"><?php $string = $_COOKIE[str_replace(' ','',$value->getName())] ;echo $value->getName();echo "&nbsp"; echo $string;?></p>
+         <progress id="health" value=<?php echo "63" ?> max=<?php echo $value->getHP(); ?>></progress>
          </div>
          </div>
          <hr class="dashed" style="width:99.5%"> </hr>

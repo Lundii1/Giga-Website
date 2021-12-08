@@ -1,4 +1,4 @@
- <!-- A SIMPLE SNAKE GAME MADE BY HTML AND CSS -->
+ <!-- https://www.educative.io/blog/javascript-snake-game-tutorial refait le-->
 
  <!DOCTYPE html>
 <html>
@@ -44,7 +44,6 @@ var apple = {
 };
 
 // get random whole numbers in a specific range
-// @see https://stackoverflow.com/a/1527820/2124254
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
@@ -160,9 +159,6 @@ document.addEventListener('keydown', function(e) {
 // start the game
 requestAnimationFrame(loop);
 </script>
-<footer>
-<h2 class ="box paragraph">Made by not lundii :) </h2>
-</footer>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </html>

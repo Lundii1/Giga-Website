@@ -10,6 +10,40 @@
     <link href="../style.css" rel="stylesheet">
     <link href="../hungergames.css" rel="stylesheet">
 </head>
+<style>
+progress::-webkit-progress-bar {
+    background-color: #FF0000; 
+}
+
+progress::-webkit-progress-value {
+    background-color: #808080 !important;
+}
+/* Pour le texte sur la bar */
+/* .progress:before {
+  content:attr();
+}
+.progress {
+ text-align:center;
+} */
+
+/* For Firefox */
+progress {
+    background-color: #FF0000;
+}
+
+progress::-moz-progress-bar {
+    background-color: #FF0000 !important;
+}
+
+/* For IE10 */
+progress {
+    background-color: #FF0000;
+}
+
+progress {
+    background-color: #808080;
+}
+</style>
 <body class="container-fluid">
 <?php 
 include("header.php");
@@ -19,6 +53,14 @@ $y = explode('-',__FILE__);
 $stringy = $y[1];
 $z = explode('.',$stringy);
 $x = (intval($z[0]) + 1)."";
+if (!empty($_SERVER['REMOTE_ADDR']) && $x == 1) {
+  // If a "remote" address is set, we know that this is not a CLI call
+  header('HTTP/1.1 403 Forbidden');
+  echo '<button class="btn btn-light">
+  <a href="../Index.php">Access denied. Go away, shoo!</a>
+</button>';
+  die();
+} 
 $myfile = "Day-".$x.".php";
 $createfile = fopen($myfile,"w") or die ("Oops");
 fwrite($createfile, file_get_contents("template.php"));
@@ -36,6 +78,7 @@ session_start();
          <div class="col-lg-12">
          <img src=../<?php echo $value->getPhoto(); ?> class="image">
          <p class="paragraph"><?php $string = $_COOKIE[str_replace(' ','',$value->getName())] ;echo $value->getName();echo "&nbsp"; echo $string;?></p>
+         <progress id="health" value=<?php echo "63" ?> max=<?php echo $value->getHP(); ?>></progress>
          </div>
          </div>
          <hr class="dashed" style="width:99.5%"> </hr>
